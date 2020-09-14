@@ -3,8 +3,6 @@
 
 # Goals of this platform
 
-\tableofcontents <!-- you can use \toc as well -->
-
 This platform is a community effort to work on improving consideration of heterogeneity at the land-atmosphere interface. 
 This platform allows:
 1. Interactive visualisation of field measurements and model results
@@ -23,3 +21,6 @@ LAH (we need a name) focuses on heterogeneity within sub-pixels (area of about a
 Furthermore, this platform specifically focuses on heterogeneity, rather than benchmarking in general. 
 Mechanisms explaining heterogeneity and scaling is our focus, not exclusively benchmark metrics. 
 
+# Data storage
+
+Datasets are not hosted on github, rather they are downloaded from DOI (e.g. [Figshare] (https://figshare.com/))
