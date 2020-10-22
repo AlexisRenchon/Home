@@ -34,7 +34,7 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.x'
-    - run: pip install matplotlib # if you use PyPlot this is needed
+    #- run: pip install matplotlib # if you use PyPlot this is needed
     - name: Install Julia
       uses: julia-actions/setup-julia@v1
       with:
