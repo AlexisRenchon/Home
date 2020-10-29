@@ -1,0 +1,4 @@
+Sitemap: https://alexisrenchon.github.io/TEST/sitemap.xml
+
+User-agent: *
+Disallow:
