@@ -13,14 +13,6 @@ The source code of this website is hosted on [github] (https://github.com/Alexis
 
 This website and data analysis are open-source, transparent, and users are encouraged to contribute. 
 
-# Distinction from ILAMB
-
-[ILAMB] (https://www.ilamb.org/), the international land model benchmarking project, has some similarities with this platform.
- 
-LAH (we need a name) focuses on heterogeneity within sub-pixels (area of about a hectar), a smaller scale compared to ILAMB. 
-Furthermore, this platform specifically focuses on heterogeneity, rather than benchmarking in general. 
-Mechanisms explaining heterogeneity and scaling is our focus, not exclusively benchmark metrics. 
-
 # Data storage
 
 Datasets are not hosted on github, rather they are downloaded from DOI (e.g. [Figshare] (https://figshare.com/))
