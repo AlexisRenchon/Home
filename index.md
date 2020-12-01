@@ -1,9 +1,9 @@
-@def title = "Heterogeneity at the land-atmosphere interface"
+@def title = "CUP of TEA"
 @def tags = ["syntax", "code"]
 
 # Goals of this platform
 
-This platform is a community effort to work on improving consideration of heterogeneity at the land-atmosphere interface. 
+The Community Understanding Platform of Terrestrial Exchanges with the Atmosphere (CUP of TEA) is a community effort to work on improving consideration of heterogeneity at the land-atmosphere interface. 
 This platform allows:
 1. Interactive visualisation of field measurements and model results
 1. Benchmark metrics on the capacity of models to capture spatio-temporal heterogeneity 
