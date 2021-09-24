@@ -8,7 +8,6 @@ io = IOBuffer()
 println(io, "~~~")
 show(io, MIME"text/html"(), Page(exportable=true, offline=true))
 
-
 # load DAMM, 3 params + porosity
 include("DAMM_scaled_porosity.jl");
 L = 40 # resolution
@@ -24,29 +23,14 @@ y = collect(range(1, length=L, stop=L))
 y = repeat(y, outer=L)
 y = Int.(y)
 x_ax = collect(range(1, length=L, stop=L))
+
 function create_plot(sliders1, sliders2, sliders3, sliders4)
 	fig = Figure(resolution = (1800, 1000))
-	#fig
-
-	#ax1 = fig[1, 1] = Axis(fig, title = "Parameters")
-	#fig
-
-	#texts = Array{Label}(undef, 4);
-	#sliders = [Slider(fig, range = sr) for sr in sliderranges];
-	#texts[4] = Label(fig, text= lift(X->string(to_latex("E_a"), " = ", X, to_latex(" (kJ mol^{-1})")), sliders[4].value), textsize=35, width = Auto(false));
-	#texts[5] = Label(fig, text= lift(X->string(to_latex("S_x"), " = ", X, to_latex(" (gC cm^{-3})")), sliders[5].value), textsize=35, width = Auto(false));
-
 	ax3D = Axis3(fig[1,1])
-
-	# need DAMM to return NAN instead of bug when SWC > porosity
-	# try catch?
-	# or condition, if SWC (x[i, 2]) > porosity, return NaN, or force SWC to porosity 
-
 	surface!(ax3D, x_ax, y_ax, lift((AlphaSx, kMSx, kMO2, Porosity)->
 		Matrix(sparse(x, y, DAMM(x_range, [AlphaSx, kMSx, kMO2, Porosity]))),
 		sliders1.value, sliders2.value, sliders3.value, sliders4.value),
 		colormap = Reverse(:Spectral), transparency = true, alpha = 0.2, shading = false) 
-		#, limits = Rect(10, 0, 0, 25, 0.4, 20));
 
 	wireframe!(ax3D, x_ax, y_ax, lift((AlphaSx, kMSx, kMO2, Porosity)->
 		Matrix(sparse(x, y, DAMM(x_range, [AlphaSx, kMSx, kMO2, Porosity]))),
@@ -67,7 +51,7 @@ sr = [0.1:0.1:1, # alpha
 	0.2:0.05:0.7]; # porosity
 
 
-app = App() do session::Session    
+app = App() do    
 	sliders1 = JSServe.Slider(sr[1])
 	sliders2 = JSServe.Slider(sr[2])
 	sliders3 = JSServe.Slider(sr[3])
@@ -77,8 +61,7 @@ app = App() do session::Session
 	slider2 = DOM.div("kMsx: ", sliders2, sliders2.value)
 	slider3 = DOM.div("kMO2: ", sliders3, sliders3.value)
 	slider4 = DOM.div("porosity: ", sliders4, sliders4.value)
-    	return JSServe.record_states(session, DOM.div(slider1, slider2, 
-						      slider3, slider4, fig))
+    	return DOM.div(slider1, slider2, slider3, slider4, fig)
 end
 
 
