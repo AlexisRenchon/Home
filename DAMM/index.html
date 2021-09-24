@@ -46,71 +46,7 @@
 
 <!-- Content appended here -->
 <div class="franklin-content">
-<pre><code class="language-julia">using WGLMakie, JSServe, UnicodeFun, SparseArrays, Observables
-io &#61; IOBuffer&#40;&#41;
-println&#40;io, &quot;~~~&quot;&#41;
-show&#40;io, MIME&quot;text/html&quot;&#40;&#41;, Page&#40;exportable&#61;true, offline&#61;true&#41;&#41;
 
-# load DAMM, 3 params &#43; porosity
-include&#40;&quot;DAMM_scaled_porosity.jl&quot;&#41;;
-L &#61; 40 # resolution
-x &#61; collect&#40;range&#40;1, length&#61;L, stop&#61;1&#41;&#41;
-&#91;append&#33;&#40;x, collect&#40;range&#40;i, length&#61;L, stop&#61;i&#41;&#41;&#41; for i &#61; 2:40&#93;
-x &#61; reduce&#40;vcat,x&#41;
-y &#61; collect&#40;range&#40;0.0, length&#61;L, stop&#61;0.70&#41;&#41;
-y &#61; repeat&#40;y, outer&#61;L&#41;
-x_range &#61; hcat&#40;x, y&#41;
-x &#61; Int.&#40;x_range&#91;:, 1&#93;&#41;
-y_ax &#61; collect&#40;range&#40;0.0, length&#61;L, stop&#61;0.70&#41;&#41;
-y &#61; collect&#40;range&#40;1, length&#61;L, stop&#61;L&#41;&#41;
-y &#61; repeat&#40;y, outer&#61;L&#41;
-y &#61; Int.&#40;y&#41;
-x_ax &#61; collect&#40;range&#40;1, length&#61;L, stop&#61;L&#41;&#41;
-
-function create_plot&#40;sliders1, sliders2, sliders3, sliders4&#41;
-	fig &#61; Figure&#40;resolution &#61; &#40;1800, 1000&#41;&#41;
-	ax3D &#61; Axis3&#40;fig&#91;1,1&#93;&#41;
-	surface&#33;&#40;ax3D, x_ax, y_ax, lift&#40;&#40;AlphaSx, kMSx, kMO2, Porosity&#41;-&gt;
-		Matrix&#40;sparse&#40;x, y, DAMM&#40;x_range, &#91;AlphaSx, kMSx, kMO2, Porosity&#93;&#41;&#41;&#41;,
-		sliders1.value, sliders2.value, sliders3.value, sliders4.value&#41;,
-		colormap &#61; Reverse&#40;:Spectral&#41;, transparency &#61; true, alpha &#61; 0.2, shading &#61; false&#41; 
-
-	wireframe&#33;&#40;ax3D, x_ax, y_ax, lift&#40;&#40;AlphaSx, kMSx, kMO2, Porosity&#41;-&gt;
-		Matrix&#40;sparse&#40;x, y, DAMM&#40;x_range, &#91;AlphaSx, kMSx, kMO2, Porosity&#93;&#41;&#41;&#41;,
-		sliders1.value, sliders2.value, sliders3.value, sliders4.value&#41;,
-		   overdraw &#61; true, transparency &#61; true, color &#61; &#40;:black, 0.1&#41;&#41;;
-
-	ax3D.xlabel &#61; to_latex&#40;&quot;T_&#123;soil&#125; &#40;°C&#41;&quot;&#41;;
-	ax3D.ylabel &#61; to_latex&#40;&quot;\\theta &#40;m^3 m^&#123;-3&#125;&#41;&quot;&#41;;
-	ax3D.zlabel &#61; to_latex&#40;&quot;R_&#123;soil&#125; &#40;\\mumol m^&#123;-2&#125; s^&#123;-1&#125;&#41;&quot;&#41;;
-	zlims&#33;&#40;0, 25&#41;
-	ylims&#33;&#40;0, 0.7&#41;
-	return fig
-end
-
-sr &#61; &#91;0.1:0.1:1, # alpha
-	0:1:50, # kMsx
-	0:1:50, # kmo2
-	0.2:0.05:0.7&#93;; # porosity
-
-
-app &#61; App&#40;&#41; do session::Session    
-	sliders1 &#61; JSServe.Slider&#40;sr&#91;1&#93;&#41;
-	sliders2 &#61; JSServe.Slider&#40;sr&#91;2&#93;&#41;
-	sliders3 &#61; JSServe.Slider&#40;sr&#91;3&#93;&#41;
-	sliders4 &#61; JSServe.Slider&#40;sr&#91;4&#93;&#41;
-	fig &#61; create_plot&#40;sliders1, sliders2, sliders3, sliders4&#41;    
-    	slider1 &#61; DOM.div&#40;&quot;alpha: &quot;, sliders1, sliders1.value&#41;
-	slider2 &#61; DOM.div&#40;&quot;kMsx: &quot;, sliders2, sliders2.value&#41;
-	slider3 &#61; DOM.div&#40;&quot;kMO2: &quot;, sliders3, sliders3.value&#41;
-	slider4 &#61; DOM.div&#40;&quot;porosity: &quot;, sliders4, sliders4.value&#41;
-    	return JSServe.record_states&#40;session, DOM.div&#40;slider1, slider2, slider3, slider4, fig&#41;&#41;
-end
-
-
-show&#40;io, MIME&quot;text/html&quot;&#40;&#41;, app&#41;
-println&#40;io, &quot;~~~&quot;&#41;
-println&#40;String&#40;take&#33;&#40;io&#41;&#41;&#41;</code></pre>
 Invalid aspect &#40;1, 1, 0.6666666666666666&#41;
 <div class="page-foot">
   <div class="copyright">

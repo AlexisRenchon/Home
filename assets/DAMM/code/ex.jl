@@ -1,4 +1,5 @@
 # This file was generated, do not modify it. # hide
+#hideall
 using WGLMakie, JSServe, UnicodeFun, SparseArrays, Observables
 io = IOBuffer()
 println(io, "~~~")
@@ -41,10 +42,10 @@ function create_plot(sliders1, sliders2, sliders3, sliders4)
 	return fig
 end
 
-sr = [0.1:0.1:1, # alpha
-	0:1:50, # kMsx
+sr = [0.1:0.1:0.6, # alpha
+	7:1:50, # kMsx
 	0:1:50, # kmo2
-	0.2:0.05:0.7]; # porosity
+	0.2:0.05:0.6]; # porosity
 
 
 app = App() do session::Session    
