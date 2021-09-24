@@ -27,7 +27,7 @@ x_ax = collect(range(1, length=L, stop=L))
 
 function create_plot(sliders1, sliders2, sliders3, sliders4)
 	fig = Figure() #resolution = (1800, 1000))
-	ax3D = Axis3(fig[1,1])
+	ax3D = LScene(fig[1,1])
 	surface!(ax3D, x_ax, y_ax, lift((AlphaSx, kMSx, kMO2, Porosity)->
 		Matrix(sparse(x, y, DAMM(x_range, [AlphaSx, kMSx, kMO2, Porosity]))),
 		sliders1.value, sliders2.value, sliders3.value, sliders4.value),
@@ -38,11 +38,13 @@ function create_plot(sliders1, sliders2, sliders3, sliders4)
 		sliders1.value, sliders2.value, sliders3.value, sliders4.value),
 		   overdraw = true, transparency = true, color = (:black, 0.1));
 
-	ax3D.xlabel = to_latex("T_{soil} (°C)");
-	ax3D.ylabel = to_latex("\\theta (m^3 m^{-3})");
-	ax3D.zlabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
-	zlims!(0, 25)
-	ylims!(0, 0.7)
+	#ax3D.xlabel = to_latex("T_{soil} (°C)");
+	#ax3D.ylabel = to_latex("\\theta (m^3 m^{-3})");
+	#ax3D.zlabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
+	#zlims!(0, 25)
+	#ylims!(0, 0.7)
+	#scale!(ax3D, 1, 40, 1) 
+	#center!(ax3D)
 	return fig
 end
 
