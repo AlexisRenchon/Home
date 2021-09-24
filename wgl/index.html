@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  
+   <link rel="stylesheet" href="/TEST/libs/highlight/github.min.css">
+   
   <link rel="stylesheet" href="/TEST/css/franklin.css">
 <link rel="stylesheet" href="/TEST/css/pure.css">
 <link rel="stylesheet" href="/TEST/css/side-menu.css">
@@ -18,7 +19,7 @@
 </style>
 <link rel="icon" href="/TEST/assets/favicon.png">
 
-   <title>Data analysis</title>  
+   <title>WGLMakie + JSServe</title>  
 </head>
 <body>
   <div id="layout">
@@ -30,7 +31,7 @@
         <ul class="pure-menu-list">
           <li class="pure-menu-item "><a href="/TEST/" class="pure-menu-link">Home</a></li>
           <li class="pure-menu-item "><a href="/TEST/menu1/" class="pure-menu-link">Interactive viz</a></li>
-          <li class="pure-menu-item pure-menu-selected"><a href="/TEST/menu2/" class="pure-menu-link">Data analysis</a></li>
+          <li class="pure-menu-item "><a href="/TEST/menu2/" class="pure-menu-link">Data analysis</a></li>
           <li class="pure-menu-item "><a href="/TEST/menu3/" class="pure-menu-link">Data standard</a></li>
 		  <li class="pure-menu-item "><a href="/TEST/menu4/" class="pure-menu-link">Exp design</a></li>
         </ul>
@@ -38,28 +39,33 @@
     </div>
     <div id="main"> <!-- Closed in foot -->
       <div class="header">
-        <h1>Data analysis</h1>
+        <h1>WGLMakie + JSServe</h1>
         <h2>Argonne National Laboratory, EVS</h2>
       </div>
 
 
 <!-- Content appended here -->
-<div class="franklin-content"><h1 id="benchmarking_metrics_for_heterogeneity"><a href="#benchmarking_metrics_for_heterogeneity" class="header-anchor">Benchmarking metrics for heterogeneity</a></h1>
-<p>Ability of the model to capture:</p>
-<ol>
-<li><p>Diurnal, seasonal and inter-annual variability</p>
+<div class="franklin-content">
+<pre><code class="language-julia">using WGLMakie, JSServe
+io &#61; IOBuffer&#40;&#41;
+println&#40;io, &quot;~~~&quot;&#41;
+show&#40;io, MIME&quot;text/html&quot;&#40;&#41;, Page&#40;exportable&#61;true, offline&#61;true&#41;&#41;
+app &#61; JSServe.App&#40;&#41; do
+    return DOM.div&#40;
+        scatter&#40;1:4&#41;,
+        surface&#40;rand&#40;4, 4&#41;&#41;,
+        JSServe.Slider&#40;1:3&#41;
+    &#41;
+end
+show&#40;io, MIME&quot;text/html&quot;&#40;&#41;, app&#41;
+println&#40;io, &quot;~~~&quot;&#41;
+println&#40;String&#40;take&#33;&#40;io&#41;&#41;&#41;</code></pre>
+<p>ArgumentError: Package WGLMakie not found in current path:</p>
+<ul>
+<li><p>Run <code>import Pkg; Pkg.add&#40;&quot;WGLMakie&quot;&#41;</code> to install the WGLMakie package.</p>
 </li>
-<li><p>Spatial variability</p>
-</li>
-<li><p>Hot spot and hot moments</p>
-</li>
-<li><p>At what scale does X predict Y</p>
-</li>
-</ol>
-<h1 id="wavelet_analysis"><a href="#wavelet_analysis" class="header-anchor">Wavelet analysis </a></h1>
-<p>Wavelet analysis in time and space. </p>
-<h1 id="quantify_spatio-temporal_variability"><a href="#quantify_spatio-temporal_variability" class="header-anchor">Quantify spatio-temporal variability</a></h1>
-<p>Quantify spatial and temporal variability &#40;e.g. is there a lot of heterogeneity? Need a metric&#41;.</p>
+</ul>
+
 <div class="page-foot">
   <div class="copyright">
     &copy; Dr. Alexandre A. Renchon. Last modified: September 24, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a>.
@@ -70,6 +76,10 @@
   </div> <!-- end of id=layout -->
   <script src="/TEST/libs/pure/ui.min.js"></script>
   
+  
+      <script src="/TEST/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
   
 </body>
 </html>
