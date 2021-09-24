@@ -46,7 +46,7 @@
 
 <!-- Content appended here -->
 <div class="franklin-content">
-<pre><code class="language-julia">using WGLMakie, JSServe, UnicodeFun, SparseArrays
+<pre><code class="language-julia">using WGLMakie, JSServe, UnicodeFun, SparseArrays, Observables
 io &#61; IOBuffer&#40;&#41;
 println&#40;io, &quot;~~~&quot;&#41;
 show&#40;io, MIME&quot;text/html&quot;&#40;&#41;, Page&#40;exportable&#61;true, offline&#61;true&#41;&#41;
@@ -94,7 +94,7 @@ sr &#61; &#91;0.1:0.1:1, # alpha
 	0.2:0.05:0.7&#93;; # porosity
 
 
-app &#61; App&#40;&#41; do    
+app &#61; App&#40;&#41; do session::Session    
 	sliders1 &#61; JSServe.Slider&#40;sr&#91;1&#93;&#41;
 	sliders2 &#61; JSServe.Slider&#40;sr&#91;2&#93;&#41;
 	sliders3 &#61; JSServe.Slider&#40;sr&#91;3&#93;&#41;
@@ -104,7 +104,7 @@ app &#61; App&#40;&#41; do
 	slider2 &#61; DOM.div&#40;&quot;kMsx: &quot;, sliders2, sliders2.value&#41;
 	slider3 &#61; DOM.div&#40;&quot;kMO2: &quot;, sliders3, sliders3.value&#41;
 	slider4 &#61; DOM.div&#40;&quot;porosity: &quot;, sliders4, sliders4.value&#41;
-    	return DOM.div&#40;slider1, slider2, slider3, slider4, fig&#41;
+    	return JSServe.record_states&#40;session, DOM.div&#40;slider1, slider2, slider3, slider4, fig&#41;&#41;
 end
 
 

@@ -1,5 +1,5 @@
 # This file was generated, do not modify it. # hide
-using WGLMakie, JSServe, UnicodeFun, SparseArrays
+using WGLMakie, JSServe, UnicodeFun, SparseArrays, Observables
 io = IOBuffer()
 println(io, "~~~")
 show(io, MIME"text/html"(), Page(exportable=true, offline=true))
@@ -47,7 +47,7 @@ sr = [0.1:0.1:1, # alpha
 	0.2:0.05:0.7]; # porosity
 
 
-app = App() do    
+app = App() do session::Session    
 	sliders1 = JSServe.Slider(sr[1])
 	sliders2 = JSServe.Slider(sr[2])
 	sliders3 = JSServe.Slider(sr[3])
@@ -57,7 +57,7 @@ app = App() do
 	slider2 = DOM.div("kMsx: ", sliders2, sliders2.value)
 	slider3 = DOM.div("kMO2: ", sliders3, sliders3.value)
 	slider4 = DOM.div("porosity: ", sliders4, sliders4.value)
-    	return DOM.div(slider1, slider2, slider3, slider4, fig)
+    	return JSServe.record_states(session, DOM.div(slider1, slider2, slider3, slider4, fig))
 end
 
 
