@@ -22,7 +22,7 @@ y = Int.(y)
 x_ax = collect(range(1, length=L, stop=L))
 
 function create_plot(sliders1, sliders2, sliders3, sliders4)
-	fig = Figure(resolution = (1800, 1000))
+	fig = Figure() #resolution = (1800, 1000))
 	ax3D = Axis3(fig[1,1])
 	surface!(ax3D, x_ax, y_ax, lift((AlphaSx, kMSx, kMO2, Porosity)->
 		Matrix(sparse(x, y, DAMM(x_range, [AlphaSx, kMSx, kMO2, Porosity]))),
