@@ -1,0 +1,8 @@
+name = "test"
+uuid = "988473b6-cfc3-47ab-a667-e30788ff4dc2"
+authors = ["AlexisRenchon <a.renchon@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+JSServe = "824d6782-a2ef-11e9-3a09-e5662e0c26f9"
+WGLMakie = "276b4fcb-3e11-5398-bf8b-a0c2d153d008"
