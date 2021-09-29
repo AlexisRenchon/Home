@@ -1,4 +1,6 @@
-+++ title = "WGLMakie + JSServe" +++
++++
+title = "WGLMakie + JSServe"
++++
 
 ```julia:ex
 using WGLMakie, JSServe, UnicodeFun, SparseArrays, Observables
