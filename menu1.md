@@ -2,9 +2,9 @@
 
 # Source code 
 
-[A first example] (https://alexisrenchon.github.io/TEST/soil), using a testbed dataset at Argonne National Laboratory. 
+[A first example] (https://C-U-P-of-T-E-A.github.io/Home/soil), using a testbed dataset at Argonne National Laboratory. 
 
-[A second example] (https://alexisrenchon.github.io/TEST/DAMM/), showing the Dual Arrhenius Michaelis-Menten model. 
+[A second example] (https://C-U-P-of-T-E-A.github.io/Home/DAMM/), showing the Dual Arrhenius Michaelis-Menten model. 
 
 These interactive figure are coded in [Julia] (https://julialang.org/) using [Makie] (https://github.com/JuliaPlots/Makie.jl). 
 
