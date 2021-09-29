@@ -1,5 +1,5 @@
 +++
-title = "WGLMakie + JSServe"
+title = "DAMM model"
 +++
 
 ```julia:ex
