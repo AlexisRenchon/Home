@@ -22,8 +22,8 @@ y = Int.(y)
 x_ax = collect(range(1, length=L, stop=L))
 
 function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
-	fig = Figure() #resolution = (1800, 1000))
-	ax3D = LScene(fig[1,1]) # should be Axis3 instead of LScene, but bug
+	fig = Figure(resolution = (1800, 1000))
+	ax3D = LScene(fig[1:2,1]) # should be Axis3 instead of LScene, but bug
 	surface!(ax3D, x_ax, y_ax, lift((AlphaSx, kMSx, kMO2, Porosity)->
 		Matrix(sparse(x, y, DAMM(x_range, [AlphaSx, kMSx, kMO2, Porosity]))),
 		sliders1.value, sliders2.value, sliders3.value, sliders4.value),
@@ -55,13 +55,13 @@ function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
 	ts1 = collect(10:1:35)
 	lines!(ax2D, ts1, lift(sm -> DAMM(
 	 hcat(ts1, collect(range(sm, length=length(ts1), stop=sm))), p),
-	 sliders5.value), color = :black)
+	 sliders5.value), color = :black, linewidth = 8)
 	
 	ax2D2 = Axis(fig[2,2])
 	sm2 = collect(0.0:0.02:0.7)	
 	lines!(ax2D2, sm2, lift(ts -> DAMM(
 	 hcat(collect(range(ts, length=length(sm2), stop=ts)), sm2), p),
-	 sliders6.value), color = :black)
+	 sliders6.value), color = :black, linewidth = 8)
 	
 	ylims!(ax2D, 0.0, 30.0)
 	ylims!(ax2D2, 0.0, 30.0)
@@ -69,6 +69,9 @@ function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
 	ax2D.ylabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
 	ax2D2.ylabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
 	ax2D2.xlabel = to_latex("\\theta (m^3 m^{-3})");
+	
+	fontsize_theme = Theme(fontsize = 20)
+	set_theme!(fontsize_theme)
 	
 	return fig
 end
