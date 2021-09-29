@@ -5,7 +5,7 @@ The website_* must be defined for the RSS to work
 -->
 @def website_title = "Heterogeneity at the land-atmosphere interface"
 @def website_descr = "Heterogeneity at the land-atmosphere interface"
-@def website_url   = "https://alexisrenchon.github.io/TEST/"
+@def website_url   = "https://C-U-P-of-T-E-A.github.io/Home/"
 
 @def author = "Dr. Alexandre A. Renchon"
 
