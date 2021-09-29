@@ -70,7 +70,7 @@ function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
 	ax2D2.ylabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
 	ax2D2.xlabel = to_latex("\\theta (m^3 m^{-3})");
 	
-	fontsize_theme = Theme(fontsize = 20)
+	fontsize_theme = Theme(fontsize = 80)
 	set_theme!(fontsize_theme)
 	
 	return fig
