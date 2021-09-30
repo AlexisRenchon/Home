@@ -59,18 +59,24 @@ function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
 	ts1 = collect(10:1:35)
 	lines!(ax2D, ts1, lift((AlphaSx, kMSx, kMO2, Porosity, sm) -> DAMM(
 	 hcat(ts1, collect(range(sm, length=length(ts1), stop=sm))), [AlphaSx, kMSx, kMO2, Porosity]),
-	 sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders5.value), color = :black, linewidth = 8)
+	 sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders5.value), color = :blue, linewidth = 8)
 	
 	ax2D2 = Axis(fig[2,2])
 	sm2 = collect(0.0:0.02:0.7)	
 	lines!(ax2D2, sm2, lift((AlphaSx, kMSx, kMO2, Porosity, ts) -> DAMM(
 	 hcat(collect(range(ts, length=length(sm2), stop=ts)), sm2), [AlphaSx, kMSx, kMO2, Porosity]),
-	 sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders6.value), color = :black, linewidth = 8)
+	 sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders6.value), color = :red, linewidth = 8)
 
-	# TEST: isoline in the 3D figure
-	#lines!(ax3D, lift((AlphaSx, kMSx, kMO2, Porosity, sm) -> ts1, collect(range(sm, length=length(ts1), stop=sm)), DAMM(
-	#hcat(ts1, collect(range(sm, length=length(ts1), stop=sm))), [AlphaSx, kMSx, kMO2, Porosity]),
-	#sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders5.value), color = :blue, linewidth = 8)
+	# isoline in the 3D figure
+	lines!(ax3D, lift((AlphaSx, kMSx, kMO2, Porosity, sm) ->
+	Point3f0.(ts1, collect(range(sm, length=length(ts1), stop=sm)), DAMM(
+	hcat(ts1, collect(range(sm, length=length(ts1), stop=sm))), [AlphaSx, kMSx, kMO2, Porosity])),
+	sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders5.value), color = :blue, linewidth = 8)
+
+	lines!(ax3D, lift((AlphaSx, kMSx, kMO2, Porosity, ts) ->
+	Point3f0.(collect(range(ts, length=length(sm2), stop=ts)), sm2, DAMM(
+	hcat(collect(range(ts, length=length(sm2), stop=ts)), sm2), [AlphaSx, kMSx, kMO2, Porosity])),
+	sliders1.value, sliders2.value, sliders3.value, sliders4.value, sliders6.value), color = :red, linewidth = 8)
 
 	
 	ylims!(ax2D, 0.0, 30.0); xlims!(ax2D, 10.0, 35.0);
