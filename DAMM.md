@@ -79,15 +79,10 @@ function create_plot(sliders1, sliders2, sliders3, sliders4, sliders5, sliders6)
 	ax2D.ylabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
 	ax2D2.ylabel = to_latex("R_{soil} (\\mumol m^{-2} s^{-1})");
 	ax2D2.xlabel = to_latex("\\theta (m^3 m^{-3})");
-<<<<<<< HEAD
+	
 	FZ = 30; ax2D.xlabelsize = FZ; ax2D.ylabelsize = FZ; ax2D2.xlabelsize = FZ; ax2D2.ylabelsize = FZ;
 	ax2D.xticklabelsize = FZ; ax2D.yticklabelsize = FZ; ax2D2.xticklabelsize = FZ; ax2D2.yticklabelsize = FZ;
-=======
-	
-	fontsize_theme = Theme(fontsize = 80)
-	set_theme!(fontsize_theme)
->>>>>>> 4750cf87b180076696da09c3e5a705acf3db8943
-	
+
 	return fig
 end
 
