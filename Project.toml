@@ -1,9 +1,10 @@
-name = "test"
-uuid = "988473b6-cfc3-47ab-a667-e30788ff4dc2"
+name = "demo"
+uuid = "eb2c663d-396b-4a03-92fe-c17a5d9aaa4e"
 authors = ["AlexisRenchon <a.renchon@gmail.com>"]
 version = "0.1.0"
 
 [deps]
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
 JSServe = "824d6782-a2ef-11e9-3a09-e5662e0c26f9"
 Observables = "510215fc-4207-5dde-b226-833fc4488ee2"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
