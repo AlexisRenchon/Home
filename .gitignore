@@ -4,3 +4,7 @@ franklin
 franklin.pub
 node_modules/
 test/
+
+# ignore VIM temp files
+*~
+*swp
