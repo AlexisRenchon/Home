@@ -9,12 +9,12 @@ show(io, MIME"text/html"(), Page(exportable=true, offline=true))
 
 imgpaths = readdir("COSORE_timeseries", join = true)
 # n = length(imgpaths)
-n = 3
+n = 5
 img = []
 [push!(img, rotr90(load(imgpaths[i]))) for i = 1:n]
 
 function create_plot(slider)
-	fig = Figure(resolution = (300, 300));
+	fig = Figure(resolution = (1300, 1000));
 	ax = Axis(fig[1,1]);
 	p = image!(ax, lift(x -> img[x], slider.value));
 	return fig
