@@ -13,7 +13,7 @@ show(io, MIME"text/html"(), Page(exportable=true, offline=true))
 
 imgpaths = readdir("COSORE_DAMM", join = true)
 # n = length(imgpaths)
-n = 10
+n = 5
 img = []
 [push!(img, rotr90(load(imgpaths[i]))) for i = 1:n]
 
