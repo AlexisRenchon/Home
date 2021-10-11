@@ -1,5 +1,5 @@
 +++
-title = "COSORE timeseries"
+title = "COSORE DAMM"
 +++
 
 ```julia:ex
@@ -11,7 +11,7 @@ show(io, MIME"text/html"(), Page(exportable=true, offline=true))
 
 # I will need to add FileIO to Project.toml
 
-imgpaths = readdir("COSORE_timeseries", join = true)
+imgpaths = readdir("COSORE_DAMM", join = true)
 # n = length(imgpaths)
 n = 10
 img = []
